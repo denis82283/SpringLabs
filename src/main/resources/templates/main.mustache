@@ -1,5 +1,32 @@
 <html lang="en">
 <body>
-    <div> {{some}} </div>
+<div>
+    <form method="post" name="add">
+        <label>
+            <input type="text" name="name" placeholder="Input name"/>
+        </label>
+        <label>
+            <input type="text" name="surname" placeholder="Input surname"/>
+        </label>
+        <label>
+            <input type="text" name="musical_group" placeholder="Input musical group in common"/>
+        </label>
+        <label>
+            <input type="text" name="pseudonym" placeholder="Input your pseudonym"/>
+        </label>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div id="main">List of viewers</div>
+<!--{{#singers}}-->
+<!--    <div>-->
+<!--        <b>{{id}}</b>-->
+<!--        <span>{{name}}</span>-->
+<!--        <span>{{surname}}</span>-->
+<!--        <span>{{musical_group}}</span>-->
+<!--        <span>{{pseudonym}}</span>-->
+<!--    </div>-->
+<!--{{/singers}}-->
 </body>
 </html>
