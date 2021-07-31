@@ -19,14 +19,20 @@
 </div>
 
 <div id="main">List of viewers</div>
-<!--{{#singers}}-->
-<!--    <div>-->
-<!--        <b>{{id}}</b>-->
-<!--        <span>{{name}}</span>-->
-<!--        <span>{{surname}}</span>-->
-<!--        <span>{{musical_group}}</span>-->
-<!--        <span>{{pseudonym}}</span>-->
-<!--    </div>-->
-<!--{{/singers}}-->
+<form method="post" action="filter">
+    <label>
+        <input type="text" name="name">
+    </label>
+    <button type="submit">Find</button>
+</form>
+{{#singers}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{name}}</span>
+        <span>{{surname}}</span>
+        <span>{{musical_group}}</span>
+        <span>{{pseudonym}}</span>
+    </div>
+{{/singers}}
 </body>
 </html>

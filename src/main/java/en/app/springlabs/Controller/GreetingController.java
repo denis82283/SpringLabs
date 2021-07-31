@@ -49,4 +49,16 @@ public class GreetingController {
         model.put("singers", singers);
         return "main";
     }
+
+    @PostMapping("filter")
+    public String filter(@RequestParam String name, Map<String, Object> model) {
+        Iterable<Singers> singers;
+        if(!name.isEmpty()) {
+            singers = someInterfaceRepo.findByName(name);
+        } else {
+            singers = someInterfaceRepo.findAll();
+        }
+        model.put("singers", singers);
+        return "main";
+    }
 }
