@@ -1,38 +1,40 @@
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <body>
-<div>
-    <form method="post" name="add">
-        <label>
-            <input type="text" name="name" placeholder="Input name"/>
-        </label>
-        <label>
-            <input type="text" name="surname" placeholder="Input surname"/>
-        </label>
-        <label>
-            <input type="text" name="musical_group" placeholder="Input musical group in common"/>
-        </label>
-        <label>
-            <input type="text" name="pseudonym" placeholder="Input your pseudonym"/>
-        </label>
-        <button type="submit">Add</button>
-    </form>
-</div>
-
-<div id="main">List of viewers</div>
-<form method="post" action="filter">
-    <label>
-        <input type="text" name="name">
-    </label>
-    <button type="submit">Find</button>
-</form>
-{{#singers}}
     <div>
-        <b>{{id}}</b>
-        <span>{{name}}</span>
-        <span>{{surname}}</span>
-        <span>{{musical_group}}</span>
-        <span>{{pseudonym}}</span>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value={{_csrf.token}}>
+            <input type="submit" value="Sign Out">
+        </form>
     </div>
-{{/singers}}
+    <div>
+        <form method="post" name="add">
+            <label><input type="text" name="name" placeholder="Input name"/></label>
+            <label><input type="text" name="surname" placeholder="Input surname"/></label>
+            <label><input type="text" name="musical_group" placeholder="Input musical group in common"/></label>
+            <label><input type="text" name="pseudonym" placeholder="Input your pseudonym"/></label>
+            <input type="hidden" name="_csrf" value={{_csrf.token}}>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <div id="main">List of viewers</div>
+    <form method="post" action="filter">
+        <label><input type="text" name="name">Input name</label>
+        <input type="hidden" name="_csrf" value={{_csrf.token}}>
+        <button type="submit">Find</button>
+    </form>
+    {{#singers}}
+        <div class="qwe" style="display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 8px">
+            <div>
+                <b>{{id}}</b>
+                <span>{{name}}</span>
+                <span>{{surname}}</span>
+                <span>{{musical_group}}</span>
+                <span>{{pseudonym}}</span>
+            </div>
+            <input type="hidden" name="_csrf" value={{_csrf.token}}>
+            <button type="submit" class="block" style="width: 100px">delete</button>
+        </div>
+    {{/singers}}
 </body>
 </html>
