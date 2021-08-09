@@ -1,41 +1,27 @@
 package en.app.springlabs.Controller;
 
-import en.app.springlabs.Domain.Role;
 import en.app.springlabs.Domain.User;
 import en.app.springlabs.Repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
-import java.util.Collections;
 import java.util.Map;
 
-@Controller
+@RestController
 public class RegistrationController {
-    private final UserRepo userRepo;
-
     @Autowired
-    public RegistrationController(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    private UserRepo userRepo;
+
+    @GetMapping("/user/registration")
+    public String showRegistrationForm(WebRequest request, Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "register";
     }
 
-    @GetMapping("/registration")
-    public String registration() {
-        return "registration";
-    }
-
-    @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
-        User userFromDB = userRepo.findByUsername(user.getUsername());
-        if(userFromDB != null) {
-            model.put("singers", "Singer exists!");
-            return "registration";
-        }
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.VIEWER));
-        userRepo.save(user);
-
-        return "redirect:/login";
-    }
 }

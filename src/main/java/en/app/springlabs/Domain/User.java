@@ -1,33 +1,65 @@
 package en.app.springlabs.Domain;
 
-import javax.persistence.*;
-import java.util.Set;
+import org.jetbrains.annotations.NotNull;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="usr")
 public class User {
+    @NotNull
+    @NotEmpty(message = "Firstname cannot be empty")
+    @Column(name="firstname")
+    private String firstname;
+    @NotNull
+    @NotEmpty(message = "Lastname cannot be empty")
+    @Column(name="lastname")
+    private String lastname;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    private Integer id;
-    @Column(name="username")
-    private String username;
+    @NotNull
+    @NotEmpty(message = "Email cannot be empty")
+    @Column(name="email")
+    private String email;
+    @NotNull
+    @NotEmpty(message = "Password cannot be empty")
     @Column(name="password")
     private String password;
-    @Column(name="active")
-    private boolean active;
+    private String matchingPassword;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
-
-    public String getUsername() {
-        return username;
+    public String getMatchingPassword() {
+        return matchingPassword;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -36,21 +68,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }
