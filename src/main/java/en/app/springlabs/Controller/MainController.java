@@ -1,7 +1,7 @@
 package en.app.springlabs.Controller;
 
 import en.app.springlabs.Domain.Singers;
-import en.app.springlabs.Repos.SomeInterfaceRepo;
+import en.app.springlabs.Repos.SingersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import java.util.Map;
 @Controller
 public class MainController {
     @Autowired
-    private SomeInterfaceRepo someInterfaceRepo;
+    private SingersRepo singersRepo;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<Singers> singers = someInterfaceRepo.findAll();
+        Iterable<Singers> singers = singersRepo.findAll();
         model.put("singers", singers);
         return "main";
     }
@@ -28,7 +28,7 @@ public class MainController {
     @GetMapping("/getdata")
     @ResponseBody
     public Iterable<Singers> getSingers() {
-        return someInterfaceRepo.findAll();
+        return singersRepo.findAll();
     }
 
     @PostMapping("/main")
@@ -40,8 +40,8 @@ public class MainController {
             Map<String, Object> model
     ) {
         Singers database = new Singers(name, surname, musical_group, pseudonym);
-        someInterfaceRepo.save(database);
-        Iterable<Singers> singers = someInterfaceRepo.findAll();
+        singersRepo.save(database);
+        Iterable<Singers> singers = singersRepo.findAll();
         model.put("singers", singers);
         return "main";
     }
@@ -50,11 +50,18 @@ public class MainController {
     public String filter(@RequestParam String name, Map<String, Object> model) {
         Iterable<Singers> singers;
         if(!name.isEmpty()) {
-            singers = someInterfaceRepo.findByName(name);
+            singers = singersRepo.findByName(name);
         } else {
-            singers = someInterfaceRepo.findAll();
+            singers = singersRepo.findAll();
         }
         model.put("singers", singers);
+        return "main";
+    }
+
+    @PostMapping("delete")
+    public String delete(@RequestParam Long id, Map<String, Object> model) {
+        singersRepo.deleteById(id);
+
         return "main";
     }
 }

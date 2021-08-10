@@ -33,7 +33,9 @@
                 <span>{{pseudonym}}</span>
             </div>
             <input type="hidden" name="_csrf" value={{_csrf.token}}>
-            <button type="submit" class="block" style="width: 100px">delete</button>
+            <form method="post" action="delete">
+                <button type="submit" class="block" style="width: 100px">delete</button>
+            </form>
         </div>
     {{/singers}}
 </body>
