@@ -1,4 +1,4 @@
-package en.app.springlabs.Repos;
+package en.app.springlabs.Entity;
 
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 

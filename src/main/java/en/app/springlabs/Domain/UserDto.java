@@ -1,5 +1,7 @@
 package en.app.springlabs.Domain;
 
+import en.app.springlabs.Entity.PasswordMatches;
+import en.app.springlabs.Entity.ValidEmail;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.Column;
@@ -10,7 +12,8 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="usr")
-public class User {
+@PasswordMatches
+public class UserDto {
     @NotNull
     @NotEmpty(message = "Firstname cannot be empty")
     @Column(name="firstname")
@@ -20,6 +23,7 @@ public class User {
     @Column(name="lastname")
     private String lastname;
     @Id
+    @ValidEmail
     @NotNull
     @NotEmpty(message = "Email cannot be empty")
     @Column(name="email")
