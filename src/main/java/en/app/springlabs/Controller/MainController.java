@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@Controller
+//@Controller
 public class MainController {
     @Autowired
     private SingersRepo singersRepo;
 
-    @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
-        return "greeting";
-    }
+//    @GetMapping("/")
+//    public String greeting(Map<String, Object> model) {
+//        return "greeting";
+//    }
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
@@ -58,10 +58,19 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("delete")
-    public String delete(@RequestParam Long id, Map<String, Object> model) {
-        singersRepo.deleteById(id);
+    @PutMapping
+    public String update(@RequestBody Singers singers, @PathVariable String id) {
 
+        return "main";
+    }
+
+    @RequestMapping("delete/{id}")
+    public String delete(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+        System.out.println(id);
+        singersRepo.deleteById(id);
+        if(singersRepo.findAll().iterator().hasNext()) {
+            model.put("singers", singersRepo.findAll());
+        }
         return "main";
     }
 }

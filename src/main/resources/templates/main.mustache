@@ -20,7 +20,7 @@
     <div id="main">List of viewers</div>
     <form method="post" action="filter">
         <label><input type="text" name="name">Input name</label>
-        <input type="hidden" name="_csrf" value={{_csrf.token}}>
+        <input type="hidden" name=" _csrf" value={{_csrf.token}}>
         <button type="submit">Find</button>
     </form>
     {{#singers}}
@@ -32,11 +32,13 @@
                 <span>{{musical_group}}</span>
                 <span>{{pseudonym}}</span>
             </div>
-            <input type="hidden" name="_csrf" value={{_csrf.token}}>
-            <form method="post" action="delete">
+            <form method="post" action="delete/{{id}}">
+                <input type="hidden" name="_csrf" value={{_csrf.token}}>
                 <button type="submit" class="block" style="width: 100px">delete</button>
             </form>
         </div>
     {{/singers}}
+    <a href="/main">Click to refresh the page</a>
 </body>
+
 </html>
