@@ -1,21 +1,14 @@
 package en.app.springlabs.view;
 
 import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.login.LoginForm;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.router.Route;
 
-@Route("login")
-public class LoginView  extends Composite<VerticalLayout> {
+@Route("log")
+public class LoginView extends Composite<LoginOverlay> {
 
     public LoginView() {
-        VerticalLayout layout = getContent();
-        layout.add(
-                new LoginForm()
-        );
-        layout.setSizeFull();
-        layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        LoginOverlay loginOverlay = getContent();
+        loginOverlay.setOpened(true);
     }
 }
