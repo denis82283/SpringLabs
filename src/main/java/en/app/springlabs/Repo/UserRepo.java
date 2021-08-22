@@ -1,4 +1,4 @@
-package en.app.springlabs.Repos;
+package en.app.springlabs.Repo;
 
 import en.app.springlabs.Domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

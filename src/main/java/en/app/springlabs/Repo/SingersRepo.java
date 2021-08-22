@@ -1,4 +1,4 @@
-package en.app.springlabs.Repos;
+package en.app.springlabs.Repo;
 
 import en.app.springlabs.Domain.Singers;
 import org.jetbrains.annotations.NotNull;
@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface SingersRepo extends JpaRepository<Singers, Long> {
     List<Singers> findByName(@Param("name") String name);
-    void deleteById(@NotNull @Param("id") Long id);
 
+    void deleteById(@NotNull @Param("id") Long id);
 }
