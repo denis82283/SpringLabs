@@ -4,7 +4,9 @@ import en.app.springlabs.Domain.Singers;
 import en.app.springlabs.Repo.SingersRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,5 +47,11 @@ public class SingersService {
         }
         singersRepo.save(singers);
     }
+
+//    public Map<String, Integer> getStats() {
+//        HashMap<String, Integer> stats = new HashMap<>();
+//        findAll().forEach(singers -> stats.put(singers.getName(), singers.getSurname()));
+//        return stats;
+//    }
 }
 
