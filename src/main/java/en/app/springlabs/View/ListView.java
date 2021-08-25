@@ -8,20 +8,21 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import en.app.springlabs.Domain.Singers;
 import en.app.springlabs.Service.SingersService;
 
-@Route("")
-@CssImport("./styles/shared-styles.css")
-public class MainView extends VerticalLayout{
+@Route(value = "", layout = MainLayout.class)
+@PageTitle("Singers | Vaadin")
+public class ListView extends VerticalLayout{
     private SingersService singersService;
 
     private Grid<Singers> grid = new Grid<>(Singers.class);
     private TextField filterText = new TextField();
     private ContactForm form;
 
-    public MainView(SingersService singersService) {
+    public ListView(SingersService singersService) {
         this.singersService = singersService;
         addClassName("list-view");
         setSizeFull();
